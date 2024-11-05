@@ -1,0 +1,162 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Clientes",
+      "version": "1.0.0",
+      "description": "API para gerenciamento de clientes"
+    },
+    "servers": [
+    {
+      "url": "http://localhost/projetocadastro"
+    }
+  ],
+    "paths": {
+      "/clientes": {
+        "post": {
+          "summary": "Insere um novo cliente",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cpf": {
+                      "type": "string"
+                    },
+                    "telefone": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["nome", "cpf", "telefone", "email"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Cliente inserido com sucesso"
+            }
+          }
+        },
+        "get": {
+          "summary": "Retorna todos os clientes",
+          "responses": {
+            "200": {
+              "description": "Lista de clientes",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string" },
+                        "nome": { "type": "string" },
+                        "cpf": { "type": "string" },
+                        "telefone": { "type": "string" },
+                        "email": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/clientes/{id}": {
+        "get": {
+          "summary": "Retorna um cliente pelo ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Dados do cliente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "nome": { "type": "string" },
+                      "cpf": { "type": "string" },
+                      "telefone": { "type": "string" },
+                      "email": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualiza um cliente pelo ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nome": { "type": "string" },
+                    "cpf": { "type": "string" },
+                    "telefone": { "type": "string" },
+                    "email": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Cliente atualizado com sucesso"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Exclui um cliente pelo ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Cliente excluído com sucesso"
+            }
+          }
+        }
+      }
+    }
+  }
+  
